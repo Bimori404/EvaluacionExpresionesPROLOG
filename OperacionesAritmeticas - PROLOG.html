@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+    AUTOR: Juan Samuel Perez Gonzalez 
+    Estilo de programacion: K&R
+-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Aritmética</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #444444;
+        }
+
+        .calculator {
+            max-width: 400px;
+            margin: 10vw auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="text"] {
+            width: 94%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #result {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+
+</head>
+<!-- 
+    En JavaScript, al elevar un número a una potencia se utilizan dos asteriscos **.
+        ( (3 + 2) ^ 2 - 15 ) / ( 2 * 5 ) -> ( ( 3 + 2 ) ** 2 - 15 ) / ( 2 * 5 )
+
+    En JavaScript, el operador módulo o resto se representa con el símbolo %.
+        13 MOD 5 -> 13 % 5
+
+    Mas informacion sobre operaciones aritmeticas en javascript
+        https://lenguajejs.com/javascript/number/objeto-math/
+-->
+
+<body>
+    <div class="calculator">
+        <h1>EVALUACION DE EXPRECIONES</h1>
+        <ul>
+            <li>Para calcular el modulo se utiliza %</li>
+            <li>Para calcular la potencia se utilizan **</li>
+        </ul>
+        <input type="text" id="expressionInput" placeholder="Ingrese la expresión">
+        <button onclick="evaluateExpression()">Calcular</button>
+        <div id="result"></div>
+    </div>
+
+    <script>// Define una función llamada "evaluateExpression"
+        function evaluateExpression() {
+            /* Obtiene el elemento de entrada de texto con el identificador "expressionInput"
+            y lo almacena en la variable "expressionInput" */ 
+            const expressionInput = document.getElementById("expressionInput"); 
+            // Obtiene el div con el identificador "result" y lo almacena en la variable "resultDiv"
+            const resultDiv = document.getElementById("result");
+            // Obtiene el valor ingresado en el campo de entrada de texto y lo almacena en la variable "expression"
+            const expression = expressionInput.value;
+
+            try {
+                /* Intenta evaluar la expresión ingresada utilizando la función "eval()" y almacena el
+                resultado en la variable "result". Muestra el resultado en el div con el identificador "result" */
+                const result = eval(expression);
+                resultDiv.innerHTML = `Resultado: ${result}`;
+            } catch (error) {
+                /* Si ocurre un error durante la evaluación de la expresión, muestra un
+                mensaje de error en el div "result" */ 
+                resultDiv.innerHTML = "Error en la expresión";
+            }
+        }
+    </script>
+</body>
+</html>
