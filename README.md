@@ -24,8 +24,7 @@ utilizando la función `eval()` de JavaScript.
 2.- Ingresa una expresión matemática en el campo de entrada de texto.
 3.- Para calcular el módulo, utiliza el símbolo %, y para calcular la potencia, utiliza **.
 4.- Haz clic en el botón "Calcular" para obtener el resultado.
-5.- El resultado se mostrará en el área de resultado. Además, la expresión y
-        el resultado se agregarán al historial de resultados.
+5.- El resultado se mostrará en el área de resultado. Además, la expresión y el resultado se agregarán al historial de resultados.
 
 ## Ejemplos de expresiones válidas
 
