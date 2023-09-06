@@ -2,7 +2,7 @@
 <html lang="en">
 <!--
     AUTOR: J Samuel P Gonzalez 
-    Estilo de programacion: K&R
+    Estilo de programacion:  BSD-KNF
 -->
 <head>
     <meta charset="UTF-8">
@@ -66,38 +66,55 @@
 -->
 
 <body>
+    <!-- Contenedor principal de la calculadora -->
     <div class="calculator">
-        <h1>EVALUACION DE EXPRECIONES</h1>
+        <h1>EVALUACION DE EXPRESIONES</h1>
+        <!-- Lista de instrucciones para el usuario -->
         <ul>
-            <li>Para calcular el modulo se utiliza %</li>
+            <li>Para calcular el módulo se utiliza %</li>
             <li>Para calcular la potencia se utilizan **</li>
         </ul>
+        <!-- Campo de entrada de texto para la expresión -->
         <input type="text" id="expressionInput" placeholder="Ingrese la expresión">
+        <!-- Botón para calcular la expresión -->
         <button onclick="evaluateExpression()">Calcular</button>
+        <!-- Div para mostrar el resultado de la expresión -->
         <div id="result"></div>
+        <!-- Div para mostrar el historial de resultados -->
+        <div id="history">
+            <h2>Historial de Resultados</h2>
+            <!-- Lista para mostrar los resultados anteriores -->
+            <ul id="resultList"></ul>
+        </div>
     </div>
 
-    <script>// Define una función llamada "evaluateExpression"
+    <!-- Script para evaluar expresiones y mantener el historial -->
+    <script>
+        // Array para almacenar los resultados
+        const results = [];
+
+        // Función para evaluar la expresión ingresada
         function evaluateExpression() {
-            /* Obtiene el elemento de entrada de texto con el identificador "expressionInput"
-            y lo almacena en la variable "expressionInput" */ 
-            const expressionInput = document.getElementById("expressionInput"); 
-            // Obtiene el div con el identificador "result" y lo almacena en la variable "resultDiv"
+            const expressionInput = document.getElementById("expressionInput");
             const resultDiv = document.getElementById("result");
-            // Obtiene el valor ingresado en el campo de entrada de texto y lo almacena en la variable "expression"
+            const resultList = document.getElementById("resultList");
             const expression = expressionInput.value;
 
             try {
-                /* Intenta evaluar la expresión ingresada utilizando la función "eval()" y almacena el
-                resultado en la variable "result". Muestra el resultado en el div con el identificador "result" */
                 const result = eval(expression);
                 resultDiv.innerHTML = `Resultado: ${result}`;
+
+                // Agrega el resultado al historial
+                results.push(result);
+                // Crea un nuevo elemento de lista y agrega el resultado
+                const listItem = document.createElement("li");
+                listItem.innerHTML = `Expresión: ${expression} <br> Resultado: ${result}`;
+                resultList.appendChild(listItem);
             } catch (error) {
-                /* Si ocurre un error durante la evaluación de la expresión, muestra un
-                mensaje de error en el div "result" */ 
                 resultDiv.innerHTML = "Error en la expresión";
             }
         }
     </script>
 </body>
+
 </html>
