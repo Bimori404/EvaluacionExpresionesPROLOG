@@ -4,6 +4,7 @@
     AUTOR: J Samuel P Gonzalez 
     Estilo de programacion:  BSD-KNF
 -->
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -73,6 +74,7 @@
         <ul>
             <li>Para calcular el módulo se utiliza %</li>
             <li>Para calcular la potencia se utilizan **</li>
+            <li>Para calcular la raíz cuadrada, use sqrt(N)</li>
         </ul>
         <!-- Campo de entrada de texto para la expresión -->
         <input type="text" id="expressionInput" placeholder="Ingrese la expresión">
@@ -101,7 +103,27 @@
             const expression = expressionInput.value;
 
             try {
-                const result = eval(expression);
+                let result;
+
+                // Verificar si la expresión contiene una raíz cuadrada
+                if (expression.includes("sqrt(")) {
+                    // Extraer el número dentro de sqrt()
+                    const match = expression.match(/sqrt\(([^)]+)\)/);
+                    if (match) {
+                        const number = parseFloat(match[1]);
+                        if (!isNaN(number)) {
+                            result = Math.sqrt(number);
+                        } else {
+                            throw new Error("Número inválido dentro de sqrt()");
+                        }
+                    } else {
+                        throw new Error("Formato inválido para la raíz cuadrada");
+                    }
+                } else {
+                    // Evaluar la expresión normalmente
+                    result = eval(expression);
+                }
+
                 resultDiv.innerHTML = `Resultado: ${result}`;
 
                 // Agrega el resultado al historial
@@ -116,5 +138,6 @@
         }
     </script>
 </body>
+
 
 </html>
