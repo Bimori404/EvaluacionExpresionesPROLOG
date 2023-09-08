@@ -80,25 +80,41 @@
         <button onclick="evaluateExpression()">Calcular</button>
         <!-- Div para mostrar el resultado de la expresión -->
         <div id="result"></div>
+        <!-- Div para mostrar el historial de resultados -->
+        <div id="history">
+            <h2>Historial de Resultados</h2>
+            <!-- Lista para mostrar los resultados anteriores -->
+            <ul id="resultList"></ul>
+        </div>
     </div>
 
-    <!-- Script para evaluar expresiones sin mantener el historial -->
+    <!-- Script para evaluar expresiones y mantener el historial -->
     <script>
+        // Array para almacenar los resultados
+        const results = [];
+
         // Función para evaluar la expresión ingresada
         function evaluateExpression() {
             const expressionInput = document.getElementById("expressionInput");
             const resultDiv = document.getElementById("result");
+            const resultList = document.getElementById("resultList");
             const expression = expressionInput.value;
 
             try {
                 const result = eval(expression);
                 resultDiv.innerHTML = `Resultado: ${result}`;
+
+                // Agrega el resultado al historial
+                results.push(result);
+                // Crea un nuevo elemento de lista y agrega el resultado
+                const listItem = document.createElement("li");
+                listItem.innerHTML = `Expresión: ${expression} <br> Resultado: ${result}`;
+                resultList.appendChild(listItem);
             } catch (error) {
                 resultDiv.innerHTML = "Error en la expresión";
             }
         }
     </script>
 </body>
-
 
 </html>
